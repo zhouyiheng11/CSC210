@@ -1,4 +1,4 @@
-Name of the Application: Dragon Slayer
+Name of the Application: Food Miner
 ---------------------------------------------------------------------
 Introduction:
 ---------------------------------------------------------------------
