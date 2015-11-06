@@ -1,12 +1,63 @@
 <html>
 	<head>
-    	<title>Welcome to Food Miner!</title>
+    	<title>Sign Up-Food Miner!</title>
+    	<h1>Sign Up for Food Miner</h1>
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   		<script type = "text/javascript"> 
-				
+  			$(document).ready(function() {
+  				$("#submit").click(function() {
+    				if ($("#passwordBox").val() != $("#repasswordBox").val()){
+    					alert("Password Not matching!");
+    					var x = document.getElementById("passwordBox");
+    					var y = document.getElementById("repasswordBox");
+    					x.value = "";
+    					y.value = "";
+
+    				}
+    				else{
+    					$.ajax({
+    						url: "users/",
+    						type: "POST",
+      						dataType : "text", // this URL returns a plain text string, not JSON
+     						data : { 
+     							username: $("#usernameBox").val(),
+              	 				password: $("#passwordBox").val(),
+               					nickname: $("#nicknameBox").val(),
+               					age: $("#ageBox").val(),
+               					gender: $("#gender").val()
+             				},
+
+      						success: function( data ) {
+        						if (data == 'OK') {
+         							$("#status").html("Successfully created a new user!");
+        						} else {
+          							$("#status").html(data);
+        						}
+      						},
+
+    					});
+    				}
+  				});
+  			});
+
 		</script>
 	</head>
 	<body>
-		
+		<p>
+			username:     <input id="usernameBox" type="text" size="20"/><br>
+    		password:     <input id="passwordBox" type="password" size="20"/><br>
+    		Re-password:  <input id="repasswordBox" type="password" size="20"/><br>
+    		nickname:     <input id="nicknameBox" type="text" size="20"/><br>
+    		age:          <input id="ageBox" type="text" size="20"/><br>
+    		gender: 
+    		<input type="radio" id="gender" name="sex" value="male" checked>Male 
+    		<input type="radio" id="gender" name="sex" value="female"> Female
+    	</p>
+    	<p>
+    		<button id="submit">submit</button>
+    		<button id="reset">reset</button>
+    	</p>
+    	    <hr/>
+    	    <div id="status"></div>
 	</body>
 </html>
