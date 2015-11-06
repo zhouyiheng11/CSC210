@@ -26,7 +26,6 @@ app.post('/users/', function (req, res) {
 	var age = postBody.age;
 	var gender = postBody.gender;
 	var userid = username.hashCode();
-	var flag = 1;
 	//database part
 	var sqlite3 = require('sqlite3').verbose();
 	var db = new sqlite3.Database('User.db');
@@ -46,6 +45,24 @@ app.get('/signup', function (req, res) {
 	res.sendFile(__dirname + '/static/index.html');
 });
 
+//send welcome pages
+app.get('/', function (req, res) {
+	res.sendFile(__dirname + '/static/welcome.html');
+});
+
+//send resource
+app.get('/cover.css', function (req, res) {
+	res.sendFile(__dirname + '/static/cover.css');
+});
+app.get('/bootstrap.min.css', function (req, res) {
+	res.sendFile(__dirname + '/static/bootstrap.min.css');
+});
+app.get('/signin.css', function (req, res) {
+	res.sendFile(__dirname + '/static/signin.css');
+});
+app.get('/ie-emulation-modes-warning.js', function (req, res) {
+	res.sendFile(__dirname + '/static/ie-emulation-modes-warning.js');
+});
 
 // start the server on http://localhost:3000/
 var server = app.listen(3000, function () {
