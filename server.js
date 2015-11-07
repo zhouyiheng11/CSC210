@@ -29,7 +29,7 @@ app.post('/users/', function (req, res) {
 	//database part
 	var sqlite3 = require('sqlite3').verbose();
 	var db = new sqlite3.Database('User.db');
-	db.serialize(function(flag) {
+	db.serialize(function() {
   		//inserting information into the database
 		db.run('insert into Users values(\'' + String(userid) + '\',\'' + String(username) + '\',\'' + 
   		String(password) + '\',\'' + String(nickname) + '\',\'' + String(age) + '\',\'' + String(gender) + '\')');
@@ -39,6 +39,27 @@ app.post('/users/', function (req, res) {
 	res.send('OK');
 });
 
+app.post('/login/',function (req,res){
+	var postBody = req.body;
+	var username = postBody.username;
+	var password = postBody.password;
+	//database part
+	var sqlite3 = require('sqlite3').verbose();
+	var db = new sqlite3.Database('User.db');
+	var dic = {};
+	db.serialize(function() {
+  		//inserting information into the database
+  		db.each("SELECT username AS us FROM Users", function (err, row) {
+      		console.log(username);
+      		console.log("Here's rowus:"+ row.us);
+      		dic['username'] = row.us;
+      		if(String(username).localeCompare(String(row.us)) == 0){
+      			res.send(dic);
+      		}
+      		return;
+  		});
+  	});
+});
 
 //open up the sign up page
 app.get('/signup', function (req, res) {

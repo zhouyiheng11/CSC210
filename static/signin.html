@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Signin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -28,27 +28,32 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type = "text/javascript"> 
       $(document).ready(function(){
+        if(localStorage['username'] != undefined){
+          var string = "<h1>Welcome!</h1><h2>" + localStorage['username'] + "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>"
+          $("#signinbox").html(string);
+        }
+        $("#signout").click(function(){
+          localStorage.clear();
+          document.location.reload(true);
+        });
         $("#signin").click(function() {
-          $("#signinbox").html("");  
           var element = document.getElementById("head");
           element.innerHTML = "Welcome! Yiheng Zhou";          
           $.ajax({
-            url: "users/",
+            url: "login/",
             type: "POST",
-            dataType : "text", // this URL returns a plain text string, not JSON
+            dataType : "json", // this URL returns a plain text string, not JSON
             data : { 
               username: $("#username").val(),
               password: $("#password").val(),
               },
 
               success: function( data ) {
-                if (data == 'OK') {
-                  $("#status").html("Successfully created a new user!");
-                } else {
-                  $("#status").html(data);
+                  console.log(data);
+                  localStorage['username'] = data.username;
+                  localStorage['status'] = data.status;
                 }
-              },
-            });
+              });
           });
         });
     </script>
@@ -59,7 +64,7 @@
     <div id="signinbox"class="container">
 
       <form class="form-signin">
-        <h2 class="form-signin-heading" id="head">Log In Food miner</h2>
+        <h2 class="form-signin-heading" id="head" style="color:#30754D; font-family:Arial Rounded MT Bold">Log In Food miner</h2>
         <br>
         <br>
         <input id="username" class="form-control" placeholder="Username" required autofocus>
