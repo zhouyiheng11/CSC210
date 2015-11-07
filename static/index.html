@@ -69,26 +69,22 @@
 
 	<body>
 		<div class="container">
-			<h2 class="form-signin-heading" style="color:white">Sign Up</h2>
+			<h2 class="form-signin-heading" style="color:#30754D">Sign Up</h2>
       		<form class="form-signin">
 			<p>
-				UserName:</br>
-				<input id="usernameBox" class="form-control" type="text" size="20"/><br>
-    			password:</br>     
-    			<input id="passwordBox" class="form-control" type="password" size="20"/><br>
-    			Re-password:</br>  
-    			<input id="repasswordBox" class="form-control" type="password" size="20"/><br>
-    			nickname:</br>     
-    			<input id="nicknameBox" class="form-control" type="text" size="20"/><br>
-    			age:</br>          
-    			<input id="ageBox" class="form-control" type="text" size="20"/><br>
-    			gender:</br> 
+				<input id="usernameBox" class="form-control" type="text" placeholder="Username" required autofocus size="20"/><br>
+    			<input id="passwordBox" class="form-control" type="password" placeholder="password" required size="20"/><br>
+    			<input id="repasswordBox" class="form-control" type="password" placeholder="Re-password" required size="20"/><br>
+    			<input id="nicknameBox" class="form-control" type="text" placeholder="nickname" required size="20"/><br>
+    			<input id="ageBox" class="form-control" type="text" placeholder="age" required size="20"/><br>
+				<h4 class="form-signin-heading" style="color:white">Gender</h4>
     			<input type="radio" id="gender" name="sex" value="male" checked>Male 
     			<input type="radio" id="gender" name="sex" value="female"> Female
     		</p>
     		<p>
     			<button id="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
     			<button id="reset" class="btn btn-lg btn-primary btn-block" type="reset">Reset</button>
+    			<button id="Back" class="btn btn-lg btn-primary btn-block"><a style="color:white"href="http://localhost:3000/">Back</a></button>
     		</p>
     	    	<div id="status"></div>
     		</form>
