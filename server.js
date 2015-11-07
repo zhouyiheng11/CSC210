@@ -40,10 +40,16 @@ app.post('/users/', function (req, res) {
 });
 
 
-//open up the sign in page
+//open up the sign up page
 app.get('/signup', function (req, res) {
 	res.sendFile(__dirname + '/static/index.html');
 });
+
+//open up the sign in page
+app.get('/signin', function (req, res) {
+	res.sendFile(__dirname + '/static/signin.html');
+});
+
 
 //send welcome pages
 app.get('/', function (req, res) {
