@@ -50,13 +50,13 @@ app.post('/login/',function (req,res){
 	db.serialize(function() {
   		//inserting information into the database
   		db.each("SELECT username AS us FROM Users", function (err, row) {
-      		console.log(username);
-      		console.log("Here's rowus:"+ row.us);
+      		console.log(String(username));
+      		console.log("Here's rowus:"+ String(row.us));
       		dic['username'] = row.us;
       		if(String(username).localeCompare(String(row.us)) == 0){
+      			console.log("GETTING INSIDE");
       			res.send(dic);
       		}
-      		return;
   		});
   	});
 });
