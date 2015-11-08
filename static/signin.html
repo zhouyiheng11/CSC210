@@ -37,23 +37,19 @@
           document.location.reload(true);
         });
         $("#signin").click(function() {
-          var element = document.getElementById("head");
-          element.innerHTML = "Welcome! Yiheng Zhou";          
+          //var element = document.getElementById("head");
+          //element.innerHTML = "Welcome! Yiheng Zhou";          
           $.ajax({
-            url: "login/",
-            type: "POST",
+            url: "login/" + $("#username").val(),
+            type: "GET",
             dataType : "json", // this URL returns a plain text string, not JSON
-            data : { 
-              username: $("#username").val(),
-              password: $("#password").val(),
-              },
-
-              success: function( data ) {
+            success: function( data ) {
                   console.log("success!!!!");
+                  console.log("DATA:username:" + data.username);
                   localStorage['username'] = data.username;
-                  localStorage['status'] = data.status;
-                }
-              });
+                  localStorage['password'] = data.password;
+              },
+            });
           });
         });
     </script>

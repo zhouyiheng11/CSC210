@@ -44,7 +44,6 @@
                					age: $("#ageBox").val(),
                					gender: $("#gender").val()
              				},
-
       						success: function( data ) {
         						if (data == 'OK') {
          							$("#status").html("Successfully created a new user!");
@@ -52,12 +51,10 @@
           							$("#status").html(data);
         						}
       						},
-
     					});
     				}
   				});
   			});
-
 		</script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

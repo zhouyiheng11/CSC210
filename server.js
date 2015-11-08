@@ -39,26 +39,26 @@ app.post('/users/', function (req, res) {
 	res.send('OK');
 });
 
-app.post('/login/',function (req,res){
-	var postBody = req.body;
-	var username = postBody.username;
-	var password = postBody.password;
+app.get('/login/*',function (req,res){
+	var username = req.params[0];
 	//database part
 	var sqlite3 = require('sqlite3').verbose();
 	var db = new sqlite3.Database('User.db');
 	var dic = {};
-	db.serialize(function() {
+	//db.serialize(function() {
   		//inserting information into the database
-  		db.each("SELECT username AS us FROM Users", function (err, row) {
-      		console.log(String(username));
-      		console.log("Here's rowus:"+ String(row.us));
-      		dic['username'] = row.us;
+  		db.each("SELECT username AS us ,password FROM Users", function (err, row) {
       		if(String(username).localeCompare(String(row.us)) == 0){
-      			console.log("GETTING INSIDE");
+      			dic['username'] = row.us;
+      			dic['password'] = row.password;
+      			console.log('Inner loop');
+      			console.log(dic);
       			res.send(dic);
+      			return;
       		}
   		});
-  	});
+  		return;
+  	//});
 });
 
 //open up the sign up page
