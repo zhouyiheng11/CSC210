@@ -37,6 +37,8 @@
           document.location.reload(true);
         });
         $("#signin").click(function() {
+          //check password
+          localStorage['passwordenter'] = $("#password").val();
           //var element = document.getElementById("head");
           //element.innerHTML = "Welcome! Yiheng Zhou";          
           $.ajax({
@@ -46,8 +48,9 @@
             success: function( data ) {
                   console.log("success!!!!");
                   console.log("DATA:username:" + data.username);
-                  localStorage['username'] = data.username;
                   localStorage['password'] = data.password;
+                  if(localStorage['passwordenter'] == localStorage['password'])
+                    localStorage['username'] = data.username;
               },
             });
           });

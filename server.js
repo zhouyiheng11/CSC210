@@ -45,20 +45,15 @@ app.get('/login/*',function (req,res){
 	var sqlite3 = require('sqlite3').verbose();
 	var db = new sqlite3.Database('User.db');
 	var dic = {};
-	//db.serialize(function() {
-  		//inserting information into the database
-  		db.each("SELECT username AS us ,password FROM Users", function (err, row) {
-      		if(String(username).localeCompare(String(row.us)) == 0){
-      			dic['username'] = row.us;
-      			dic['password'] = row.password;
-      			console.log('Inner loop');
-      			console.log(dic);
-      			res.send(dic);
-      			return;
-      		}
-  		});
-  		return;
-  	//});
+  	//inserting information into the database
+  	db.each("SELECT username AS us ,password FROM Users WHERE username="+"\'"+username+"\'", function (err, row) {
+      	dic['username'] = row.us;
+      	dic['password'] = row.password;
+      	console.log('Inner loop');
+      	console.log(dic);
+      	res.send(dic);
+      	return;
+  	});
 });
 
 //open up the sign up page
