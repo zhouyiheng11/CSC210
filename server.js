@@ -19,21 +19,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/users/', function (req, res) {
     var postBody = req.body;
-    console.log(postBody)
+    console.log(postBody);
 	var username = postBody.username;
 	var nickname = postBody.nickname;
 	var password = postBody.password;
 	var age = postBody.age;
 	var gender = postBody.gender;
 	var userid = username.hashCode();
+
 	//database part
-	var sqlite3 = require('sqlite3').verbose();
-	var db = new sqlite3.Database('User.db');
-	db.serialize(function() {
-  		//inserting information into the database
-		db.run('insert into Users values(\'' + String(userid) + '\',\'' + String(username) + '\',\'' + 
-  		String(password) + '\',\'' + String(nickname) + '\',\'' + String(age) + '\',\'' + String(gender) + '\')');
-	});
+	var fs = require('fs');
+	var sql = require('sql.js');
+
+	var filebuffer = fs.readFileSync('User.db');
+	var db = new sql.Database(filebuffer);
+
+	db.run('INSERT INTO Users VALUES (\'' + 
+		String(userid)   + '\',\'' + String(username) + '\',\'' + 
+  		String(password) + '\',\'' + String(nickname) + '\',\'' + 
+  		String(age)      + '\',\'' + String(gender)   + '\')');
+
+	var stmt = db.prepare("SELECT * FROM Users WHERE username=:user");
+	var result = stmt.getAsObject({':user' : username});
+	console.log(result);
+
+	var data = db.export();
+	var buffer = new Buffer(data);
+	fs.writeFileSync('User.db', buffer);
 
 	db.close();
 	res.send('OK');
@@ -42,18 +54,20 @@ app.post('/users/', function (req, res) {
 app.get('/login/*',function (req,res){
 	var username = req.params[0];
 	//database part
-	var sqlite3 = require('sqlite3').verbose();
-	var db = new sqlite3.Database('User.db');
-	var dic = {};
-  	//inserting information into the database
-  	db.each("SELECT username AS us ,password FROM Users WHERE username="+"\'"+username+"\'", function (err, row) {
-      	dic['username'] = row.us;
-      	dic['password'] = row.password;
-      	console.log('Inner loop');
-      	console.log(dic);
-      	res.send(dic);
-      	return;
-  	});
+	var fs = require('fs');
+	var sql = require('sql.js');
+
+	var filebuffer = fs.readFileSync('User.db');
+	var db = new sql.Database(filebuffer);
+
+	var stmt = db.prepare("SELECT * FROM Users WHERE username=:user");
+	var result = stmt.getAsObject({':user' : username});
+
+	console.log(result); //Will print the user colomn
+
+	db.close();
+	res.send(result);
+	return;
 });
 
 //open up the sign up page

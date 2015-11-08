@@ -28,8 +28,13 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type = "text/javascript"> 
       $(document).ready(function(){
-        if(localStorage['username'] != undefined){
-          var string = "<h1>Welcome!</h1><h2>" + localStorage['username'] + "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>"
+        if(localStorage.getItem('username')){
+          var string = "<h1 class=\"cover-heading\" >Welcome!" + localStorage['nickname'] +
+                       "</h1><h2>Username:" + localStorage['username'] +
+                       "</h2><h2>Age     :" + localStorage['age'] +
+                       "</h2><h2>Gender  :" + localStorage['gender'] +
+                       "</h2><h2>Userid  :" + localStorage['userid'] +
+                       "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>"
           $("#signinbox").html(string);
         }
         $("#signout").click(function(){
@@ -49,8 +54,14 @@
                   console.log("success!!!!");
                   console.log("DATA:username:" + data.username);
                   localStorage['password'] = data.password;
-                  if(localStorage['passwordenter'] == localStorage['password'])
+                  localStorage['userid'] = data.userid;
+                  localStorage['age'] = data.age;
+                  localStorage['gender'] = data.gender;
+                  localStorage['nickname'] = data.nickname;
+                  if(localStorage['passwordenter'] == localStorage['password']){
                     localStorage['username'] = data.username;
+                    console.log(localStorage['username']);
+                  }
               },
             });
           });
