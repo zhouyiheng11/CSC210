@@ -34,13 +34,12 @@
         });
 
         if(localStorage.getItem('username')){
-          var string = "<h1 class=\"cover-heading\" >Welcome!" + localStorage['nickname'] +
+          var string = "<h1 class=\"cover-heading\" >Welcome! " + localStorage['nickname'] +
                        "</h1><h2>Username:" + localStorage['username'] +
                        "</h2><h2>Age     :" + localStorage['age'] +
                        "</h2><h2>Gender  :" + localStorage['gender'] +
-                       "</h2><h2>Userid  :" + localStorage['userid'] +
-                       "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>"
-          $("#signinbox").html(string);
+                       "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>";
+          $("#signin-form").html(string);
         }
 
         $("#signout").click(function(){
@@ -51,8 +50,10 @@
           //check password
           localStorage['passwordenter'] = $("#password").val();
           //var element = document.getElementById("head");
-          //element.innerHTML = "Welcome! Yiheng Zhou";          
-          $.ajax({
+          //element.innerHTML = "Welcome! Yiheng Zhou";  
+          $("#signin-form").on("submit", function(e){
+            e.preventDefault();
+            $.ajax({
             url: "login/" + $("#username").val(),
             type: "GET",
             dataType : "json", // this URL returns a plain text string, not JSON
@@ -67,12 +68,15 @@
                     localStorage['age'] = data.age;
                     localStorage['gender'] = data.gender;
                     localStorage['nickname'] = data.nickname;
+                    document.location.reload(true);
                   }else{
                     console.log("Password mismatch!!!!!!!!!!");
                     $("#head").html("Please check your password!");
                   }
               },
             });
+          });
+          
           });
         });
     </script>
@@ -82,7 +86,7 @@
 
     <div id="signinbox"class="container">
 
-
+      <form id="signin-form"class="form-signin">
         <h2 class="form-signin-heading" id="head" style="color:#30754D; font-family:Arial Rounded MT Bold">Log In Food miner</h2>
         <br>
         <br>
@@ -90,7 +94,7 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input id="password"type="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" id="signin">Sign in</button>
-
+      </form>
     </div> <!-- /container -->
   </body>
 </html>
