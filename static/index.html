@@ -54,6 +54,10 @@
     					});
     				}
   				});
+
+          $("#back").click(function(){
+            window.location.href = "http://localhost:3000/";
+          })
   			});
 		</script>
 
@@ -74,14 +78,14 @@
     			<input id="repasswordBox" class="form-control" type="password" placeholder="Re-password" required size="20"/><br>
     			<input id="nicknameBox" class="form-control" type="text" placeholder="nickname" required size="20"/><br>
     			<input id="ageBox" class="form-control" type="text" placeholder="age" required size="20"/><br>
-				<h4 class="form-signin-heading" style="color:#30754D">Gender</h4>
+				<h4 class="form-signin-checkbox" style="color:#30754D">Gender</h4>
     			<input type="radio" id="gender" name="sex" value="male" checked>Male 
     			<input type="radio" id="gender" name="sex" value="female"> Female
     		</p>
     		<p>
     			<button id="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
     			<button id="reset" class="btn btn-lg btn-primary btn-block" type="reset">Reset</button>
-    			<button id="Back" class="btn btn-lg btn-primary btn-block"><a style="color:white"href="http://localhost:3000/">Back</a></button>
+    			<button id="back" class="btn btn-lg btn-primary btn-block">Back</button>
     		</p>
     	    	<div id="status"></div>
     		</form>
