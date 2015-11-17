@@ -28,6 +28,11 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type = "text/javascript"> 
       $(document).ready(function(){
+
+        $(document).ajaxError(function() {
+          alert("Sorry, there was a problem!");
+        });
+
         if(localStorage.getItem('username')){
           var string = "<h1 class=\"cover-heading\" >Welcome!" + localStorage['nickname'] +
                        "</h1><h2>Username:" + localStorage['username'] +
@@ -37,11 +42,12 @@
                        "</h2><button class=\"btn btn-lg btn-primary btn-block\" id=\"signout\">Sign out</button>"
           $("#signinbox").html(string);
         }
+
         $("#signout").click(function(){
           localStorage.clear();
           document.location.reload(true);
         });
-        $("#signin").click(function() {
+        $("#signin").click(function(){
           //check password
           localStorage['passwordenter'] = $("#password").val();
           //var element = document.getElementById("head");
@@ -53,14 +59,17 @@
             success: function( data ) {
                   console.log("success!!!!");
                   console.log("DATA:username:" + data.username);
-                  localStorage['password'] = data.password;
-                  localStorage['userid'] = data.userid;
-                  localStorage['age'] = data.age;
-                  localStorage['gender'] = data.gender;
-                  localStorage['nickname'] = data.nickname;
-                  if(localStorage['passwordenter'] == localStorage['password']){
+                  if(localStorage['passwordenter'] == data.password){
                     localStorage['username'] = data.username;
                     console.log(localStorage['username']);
+                    localStorage['password'] = data.password;
+                    localStorage['userid'] = data.userid;
+                    localStorage['age'] = data.age;
+                    localStorage['gender'] = data.gender;
+                    localStorage['nickname'] = data.nickname;
+                  }else{
+                    console.log("Password mismatch!!!!!!!!!!");
+                    $("#head").html("Please check your password!");
                   }
               },
             });
@@ -73,7 +82,7 @@
 
     <div id="signinbox"class="container">
 
-      <form class="form-signin">
+
         <h2 class="form-signin-heading" id="head" style="color:#30754D; font-family:Arial Rounded MT Bold">Log In Food miner</h2>
         <br>
         <br>
@@ -81,7 +90,7 @@
         <label for="inputPassword" class="sr-only">Password</label>
         <input id="password"type="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" id="signin">Sign in</button>
-      </form>
+
     </div> <!-- /container -->
   </body>
 </html>
