@@ -1,0 +1,54 @@
+<html>
+<link href="select.css" rel="stylesheet">
+  <link href= "bootstrap.min.css" rel="stylesheet">
+  <link href="image-picker.css" rel="stylesheet">
+
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src= "bootstrap.min.js"></script>
+  <script src="image-picker.js"></script>
+  <script src="image-picker.min.js"></script>
+  <script type="masonry.pkgd.min.js"></script>
+  <script type="text/javascript">
+    // external js: masonry.pkgd.js
+
+    $(document).ready( function() {
+
+      $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true
+      });
+      
+    });
+  </script>
+
+<h1>Masonry - fluid columnWidth</h1>
+
+<div class="grid">
+  <div class="grid-sizer"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--width2 grid-item--height2"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item grid-item--width3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item grid-item--width2 grid-item--height3"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--width2 grid-item--height2"></div>
+  <div class="grid-item grid-item--width2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height3"></div>
+  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item"></div>
+  <div class="grid-item grid-item--height2"></div>
+</div>
+
+</html>
