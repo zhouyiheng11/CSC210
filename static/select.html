@@ -6,15 +6,42 @@
 	<script src="image-picker.js"></script>
 	<script src="image-picker.min.js"></script>
 	<link href="image-picker.css" rel="stylesheet">
+	<style type="text/css">
+	body {
+		padding-top: 40px;
+  		padding-bottom: 40px;
+  		background-image:
+    	radial-gradient(
+      	#f0fd07,
+      	#f06d06
+    	);
+	}
+	</style>
+	<script type = "text/javascript"> 
+	$(document).ready(function(){
+		//submit the preference food that user has chosen
+		$("#submit").click(function(){
+			console.log($("#selector").val());
+			//$.ajax({
+			//	url: "prefer/" + localStorage['username'],
+			//	type: "POST",
+			//});
+		});
+	});
+
+		</script>
 	</head>
+	<h1 align = "center" class="cover-heading">Click the Food You Like!</h1>
 	<div class = "container">
-	<select class="image-picker show-html" multiple="multiple">
-		<option data-img-src="1.jpg" value="1">  Page 1  </option>
-		<option data-img-src="1.jpg" value="2">  Page 2  </option>
-		<option data-img-src="1.jpg" value="3">  Page 3  </option>
-		<option data-img-src="1.jpg" value="4">  Page 4  </option>
-		<option data-img-src="1.jpg" value="5">  Page 5  </option>
+	<select class="image-picker masonry show-html" id ="selector" multiple="multiple">
+		<option data-img-src="image/fried-rice.jpg" value="rice"></option>
+		<option data-img-src="image/ham.jpg" value="ham"></option>
+		<option data-img-src="image/wings.jpg" value="wings"></option>
+		<option data-img-src="image/noodle.jpg" value="noodle"></option>
+		<option data-img-src="image/noodle-soup.jpg" value="noodlesoup"></option>
+		<option data-img-src="image/steak.jpg" value="steak"></option>
 	</select>
+	<button class="btn btn-lg btn-primary btn-block" id="submit">Submit!</button>
 </div>
 	<script type = "text/javascript"> 
 	$("select").imagepicker();
