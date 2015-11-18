@@ -17,16 +17,16 @@
 
 
   				$("#submit").click(function() {
-    				if ($("#passwordBox").val() != $("#repasswordBox").val()){
-    					alert("Password Not matching!");
-    					var x = document.getElementById("passwordBox");
-    					var y = document.getElementById("repasswordBox");
-    					x.value = "";
-    					y.value = "";
-    				}
-    				else{
-    					$("#signup-form").on("submit", function(e){
-            				e.preventDefault();
+  					$("#signup-form").on("submit", function(e){
+            			e.preventDefault();
+	    				if ($("#passwordBox").val() != $("#repasswordBox").val()){
+	    					alert("Password Not matching!");
+	    					var x = document.getElementById("passwordBox");
+	    					var y = document.getElementById("repasswordBox");
+	    					x.value = "";
+	    					y.value = "";
+	    				}
+	    				else{
 	    					$.ajax({
 	    						url: "users/",
 	    						type: "POST",
@@ -40,27 +40,27 @@
 	             				},
 	      						success: function( data ) {
 	        						if (data == 'OK') {
-	         							$("#status").html("Successfully created a new user!");
+	        							console.log("Success!!!");
+	         							$("#head").html("Successfully created a new user!\nPlease wait 5 seconds!");
 	        						} else {
-	          							$("#status").html(data);
+	          							$("#head").html(data);
 	        						}
-	        						setTimeout("location.href = 'http://localhost:3000/'",5000);
+	        						setTimeout("location.href = \"http://localhost:3000/signin\"",5000);
 	      						},
 	    					});
-	    				});
-    				}
+	    				}
+					});
   				});
 
         		$("#back").click(function(){
-        			console.log("YOLO");
-            		window.location.href = "http://localhost:3000/signin";
+            		window.location.href = "http://localhost:3000/";
         		})
   			});
 		</script>
 	</head>
 	<body>
 		<div class="container">
-		    <h1 class="well" style="font-family:Arial Rounded MT Bold">Sign Up for Food Miner!</h1>
+		    <h1 id="head" class="well" style="font-family:Arial Rounded MT Bold">Sign Up for Food Miner!</h1>
 			<div class="col-lg-12 well">
 				<div class="row">
 					<form id="signup-form">
@@ -107,9 +107,9 @@
 								</div>
 							</div>
 							<div style="vertical-align:middle;text-align:center;">
-								<button id="submit" class="btn btn-lg btn-info">Submit</button>
+								<button id="submit" class="btn btn-lg btn-info" type="submit">Submit</button>
 								<button id="reset" class="btn btn-lg btn-info" type="reset">Reset</button>
-								<button id="back" class="btn btn-lg btn-info">Back</button>
+								<button id="back" class="btn btn-lg btn-info" type="button">Back</button>
 							</div>
 						</div>
 					</form> 
