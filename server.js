@@ -72,14 +72,13 @@ app.get('/login/*',function (req,res){
 
 //open up the sign up page
 app.get('/signup', function (req, res) {
-	res.sendFile(__dirname + '/static/test.html');
+	res.sendFile(__dirname + '/static/signup.html');
 });
 
 //open up the sign in page
 app.get('/signin', function (req, res) {
 	res.sendFile(__dirname + '/static/signin.html');
 });
-
 
 //send welcome pages
 app.get('/', function (req, res) {
