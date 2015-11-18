@@ -72,7 +72,7 @@ app.get('/login/*',function (req,res){
 
 //open up the sign up page
 app.get('/signup', function (req, res) {
-	res.sendFile(__dirname + '/static/index.html');
+	res.sendFile(__dirname + '/static/test.html');
 });
 
 //open up the sign in page
@@ -93,8 +93,14 @@ app.get('/cover.css', function (req, res) {
 app.get('/bootstrap.min.css', function (req, res) {
 	res.sendFile(__dirname + '/static/bootstrap.min.css');
 });
+app.get('/bootstrap.min.js', function (req, res) {
+	res.sendFile(__dirname + '/static/bootstrap.min.js');
+});
 app.get('/signin.css', function (req, res) {
 	res.sendFile(__dirname + '/static/signin.css');
+});
+app.get('/signup.css', function (req, res) {
+	res.sendFile(__dirname + '/static/signup.css');
 });
 app.get('/ie-emulation-modes-warning.js', function (req, res) {
 	res.sendFile(__dirname + '/static/ie-emulation-modes-warning.js');
