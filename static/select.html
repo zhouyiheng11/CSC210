@@ -14,44 +14,6 @@
 	<script src="imagesloaded.pkgd.js"></script>
 
 	<script type="text/javascript">
-	// http://masonry.desandro.com/masonry.pkgd.js added as external resource
-
-
-	// add percentPosition functionality to Masonry
-		Outlayer.Item.prototype.layoutPosition = function() {
-			var layoutSize = this.layout.size;
-			var layoutOptions = this.layout.options;
-			var style = {};
-
-			// x
-			var xPadding = layoutOptions.isOriginLeft ? 'paddingLeft' : 'paddingRight';
-			var xProperty = layoutOptions.isOriginLeft ? 'left' : 'right';
-			var xResetProperty = layoutOptions.isOriginLeft ? 'right' : 'left';
-
-			var x = this.position.x + layoutSize[ xPadding ];
-			// set in percentage
-			x = layoutOptions.percentPosition && !layoutOptions.isHorizontal ?
-			( ( x / layoutSize.width ) * 100 ) + '%' : x + 'px';
-			style[ xProperty ] = x;
-			// reset other property
-			style[ xResetProperty ] = '';
-
-			// y
-			var yPadding = layoutOptions.isOriginTop ? 'paddingTop' : 'paddingBottom';
-			var yProperty = layoutOptions.isOriginTop ? 'top' : 'bottom';
-			var yResetProperty = layoutOptions.isOriginTop ? 'bottom' : 'top';
-
-			var y = this.position.y + layoutSize[ yPadding ];
-			// set in percentage
-			y = layoutOptions.percentPosition && layoutOptions.isHorizontal ?
-			( ( y / layoutSize.height ) * 100 ) + '%' : y + 'px';
-			style[ yProperty ] = y;
-			// reset other property
-			style[ yResetProperty ] = '';
-
-			this.css( style );
-			this.emitEvent( 'layout', [ this ] );
-		};
 
 		// external js: masonry.pkgd.js, imagesloaded.pkgd.js
 		$(document).ready( function() {

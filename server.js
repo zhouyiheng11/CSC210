@@ -96,6 +96,11 @@ app.get('/login/*',function (req,res){
 	return;
 });
 
+//profile page
+app.get('/profile' , function (req,res) {
+	res.sendFile(__dirname + '/static/profile.html');
+});
+
 //selector.html
 app.get('/prefer' , function (req,res) {
 	res.sendFile(__dirname + '/static/select.html');
@@ -117,6 +122,9 @@ app.get('/', function (req, res) {
 });
 
 //send resource
+app.get('/profile.css', function (req, res) {
+	res.sendFile(__dirname + '/static/profile.css');
+});
 app.get('/cover.css', function (req, res) {
 	res.sendFile(__dirname + '/static/cover.css');
 });
