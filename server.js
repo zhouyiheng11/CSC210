@@ -182,6 +182,9 @@ app.get('/image/noodle-soup.jpg', function (req, res) {
 app.get('/image/steak.jpg', function (req, res) {
 	res.sendFile(__dirname + '/static/image/steak.jpg');
 });
+app.get('/1.jpg', function (req, res){
+	res.sendFile(__dirname + '/static/1.jpg');
+});
 
 
 // start the server on http://localhost:3000/
