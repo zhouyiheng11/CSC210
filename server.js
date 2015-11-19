@@ -17,6 +17,29 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//update pereference
+app.post('/prefer/*', function (req, res) {
+	var postBody = req.body;
+	console.log(postBody);
+	var username = req.params[0];
+	console.log(username);
+
+	//database part
+	var fs = require('fs');
+	var sql = require('sql.js');
+
+	var filebuffer = fs.readFileSync('User.db');
+	var db = new sql.Database(filebuffer);
+	db.run('UPDATE Users SET preference=' 
+		+ '\'' + String(postBody.foodPreferList) +'\'' 
+		+ 'WHERE username = ' + '\'' + String(username) +'\'');
+	var data = db.export();
+	var buffer = new Buffer(data);
+	fs.writeFileSync('User.db', buffer);
+	db.close();
+	res.send('OK');
+});
+
 app.post('/users/', function (req, res) {
     var postBody = req.body;
     console.log(postBody);
@@ -37,7 +60,8 @@ app.post('/users/', function (req, res) {
 	db.run('INSERT INTO Users VALUES (\'' + 
 		String(userid)   + '\',\'' + String(username) + '\',\'' + 
   		String(password) + '\',\'' + String(nickname) + '\',\'' + 
-  		String(age)      + '\',\'' + String(gender)   + '\')');
+  		String(age)      + '\',\'' + String(gender)   + '\',\'' +
+		'None' + '\')');
 
 	var stmt = db.prepare("SELECT * FROM Users WHERE username=:user");
 	var result = stmt.getAsObject({':user' : username});
@@ -68,6 +92,11 @@ app.get('/login/*',function (req,res){
 	db.close();
 	res.send(result);
 	return;
+});
+
+//selector.html
+app.get('/prefer' , function (req,res) {
+	res.sendFile(__dirname + '/static/select.html');
 });
 
 //open up the sign up page
@@ -104,6 +133,46 @@ app.get('/signup.css', function (req, res) {
 app.get('/ie-emulation-modes-warning.js', function (req, res) {
 	res.sendFile(__dirname + '/static/ie-emulation-modes-warning.js');
 });
+app.get('/select.css', function (req, res) {
+	res.sendFile(__dirname + '/static/select.css');
+});
+app.get('/image-picker.css', function (req, res) {
+	res.sendFile(__dirname + '/static/image-picker.css');
+});
+app.get('/image-picker.js', function (req, res) {
+	res.sendFile(__dirname + '/static/image-picker.js');
+});
+app.get('/image-picker.min.js', function (req, res) {
+	res.sendFile(__dirname + '/static/image-picker.min.js');
+});
+app.get('/masonry.pkgd.js', function (req, res) {
+	res.sendFile(__dirname + '/static/masonry.pkgd.js');
+});
+app.get('/masonry.pkgd.min.js', function (req, res) {
+	res.sendFile(__dirname + '/static/masonry.pkgd.min.js');
+});
+app.get('/imagesloaded.pkgd.js', function (req, res) {
+	res.sendFile(__dirname + '/static/imagesloaded.pkgd.js');
+});
+app.get('/image/fried-rice.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/fried-rice.jpg');
+});
+app.get('/image/ham.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/ham.jpg');
+});
+app.get('/image/wings.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/wings.jpg');
+});
+app.get('/image/noodle.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/noodle.jpg');
+});
+app.get('/image/noodle-soup.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/noodle-soup.jpg');
+});
+app.get('/image/steak.jpg', function (req, res) {
+	res.sendFile(__dirname + '/static/image/steak.jpg');
+});
+
 
 // start the server on http://localhost:3000/
 var server = app.listen(3000, function () {
