@@ -69,8 +69,10 @@
                     localStorage['gender'] = data.gender;
                     localStorage['nickname'] = data.nickname;
                     document.location.reload(true);
+                    setTimeout("location.href = \"http://localhost:3000/\"",5000);
                   }else{
                     console.log("Password mismatch!!!!!!!!!!");
+                    localStorage.clear();
                     alert("The username or password you entered is incorrect. Please try again.");
                     document.location.reload(true);
                   }

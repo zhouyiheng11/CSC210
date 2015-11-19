@@ -1,5 +1,5 @@
 <html>
-<link href="select.css" rel="stylesheet">
+  <link href="select.css" rel="stylesheet">
   <link href= "bootstrap.min.css" rel="stylesheet">
   <link href="image-picker.css" rel="stylesheet">
 
@@ -7,49 +7,62 @@
   <script src= "bootstrap.min.js"></script>
   <script src="image-picker.js"></script>
   <script src="image-picker.min.js"></script>
+
   <script src="masonry.pkgd.js"></script>
-  <script src="masonry.pkgd.min.js"></script>  
+  <script src="masonry.pkgd.min.js"></script>
+  <script src="imagesloaded.pkgd.js"></script>
+  <script src="imagesloaded.pkgd.min.js"></script>
+
   <script type="text/javascript">
     // external js: masonry.pkgd.js
+    // external js: masonry.pkgd.js, imagesloaded.pkgd.js
 
     $(document).ready( function() {
-
-      $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true
+      // init Masonry after all images have loaded
+      var $grid = $('.grid').imagesLoaded( function() {
+        $grid.masonry({
+          itemSelector: '.grid-item',
+          percentPosition: true,
+          columnWidth: '.grid-sizer'
+        }); 
       });
-      
     });
+
   </script>
 
-<h1>Masonry - fluid columnWidth</h1>
+<h1>Masonry - imagesLoaded callback</h1>
 
 <div class="grid">
   <div class="grid-sizer"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--width2 grid-item--height2"></div>
-  <div class="grid-item grid-item--height3"></div>
-  <div class="grid-item grid-item--height2"></div>
-  <div class="grid-item grid-item--width3"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--height2"></div>
-  <div class="grid-item grid-item--width2 grid-item--height3"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--height2"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--width2 grid-item--height2"></div>
-  <div class="grid-item grid-item--width2"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--height2"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--height3"></div>
-  <div class="grid-item grid-item--height2"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item grid-item--height2"></div>
+  <div class="grid-item">
+    <div data-img-src="http://i.imgur.com/bwy74ok.jpg">
+    </div>
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/bAZWoqx.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/PgmEBSB.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/aboaFoB.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/LkmcILl.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/q9zO6tw.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/r8p3Xgq.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/hODreXI.jpg" />
+  </div>
+  <div class="grid-item">
+    <img src="http://i.imgur.com/UORFJ3w.jpg" />
+  </div>
 </div>
+
 
 </html>
