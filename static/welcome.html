@@ -35,18 +35,7 @@
         });
 
         if(localStorage.getItem('username')){
-          $("#tab").html(
-            "<li class=\"active\"><a href=\"#\">Home</a></li>
-            <li><a href=\"http://localhost:3000/signin\">"+localStorage['username']+"</a></li>
-            <li><a href=\"#\">Profile</a></li> "
-            )
-        }
-        else{
-          $("#tab").html(
-            "<li class=\"active\"><a href=\"#\">Home</a></li>
-            <li><a href=\"#\">Signin</a></li>
-            <li><a href=\"#\">Profile</a></li> "
-            )
+          $("#usertab").replaceWith("<a href=\"http://localhost:3000/signin\">"+localStorage['username']+"</a>")
         }
       });
     </script>
@@ -66,7 +55,7 @@
               <nav>
                 <ul class="nav masthead-nav" id="tab">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="http://localhost:3000/signin">Signin</a></li>
+                  <li id="usertab"><a href="http://localhost:3000/signin">Signin</a></li>
                   <li><a href="#">Profile</a></li> 
                 </ul>
               </nav>
