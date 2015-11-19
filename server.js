@@ -49,6 +49,7 @@ app.post('/users/', function (req, res) {
 	var age = postBody.age;
 	var gender = postBody.gender;
 	var userid = username.hashCode();
+	var email = postBody.email;
 
 	//database part
 	var fs = require('fs');
@@ -61,6 +62,7 @@ app.post('/users/', function (req, res) {
 		String(userid)   + '\',\'' + String(username) + '\',\'' + 
   		String(password) + '\',\'' + String(nickname) + '\',\'' + 
   		String(age)      + '\',\'' + String(gender)   + '\',\'' +
+  		String(email)    + '\',\'' + 
 		'None' + '\')');
 
 	var stmt = db.prepare("SELECT * FROM Users WHERE username=:user");
