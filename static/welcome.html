@@ -35,8 +35,13 @@
         });
 
         if(localStorage.getItem('username')){
-          $("#uname").replaceWith("<a href=\"http://localhost:3000/profile\">"+localStorage['username']+"</a>")
+          $("#uname").replaceWith("<a href=\"http://localhost:3000/profile\">"+localStorage['username']+"</a>");
+          $("#logout").replaceWith("<li><a id=\"off\" href=\"#\">Log out</a></li>");
         }
+        $("#off").click(function(){
+          localStorage.clear();
+          document.location.reload(true);
+        });
       });
     </script>
   </head>
@@ -56,8 +61,7 @@
                 <ul class="nav masthead-nav" id="tab">
                   <li class="active"><a href="#">Home</a></li>
               
-                  <li><a href="#">Profile</a></li> 
-                  <li><a href="#"></a></li> 
+                  <li id="logout"></li> 
                 </ul>
               </nav>
             </div>
