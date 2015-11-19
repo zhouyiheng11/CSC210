@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Welcome To FoodMiner.com---where you can find delicious food</title>
+    <title>FoodMiner.com</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
         });
 
         if(localStorage.getItem('username')){
-          $("#usertab").replaceWith("<a href=\"http://localhost:3000/signin\">"+localStorage['username']+"</a>")
+          $("#uname").replaceWith("<a href=\"http://localhost:3000/signin\">"+localStorage['username']+"</a>")
         }
       });
     </script>
@@ -51,11 +51,11 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand"></h3>
+              <h4 class="masthead-brand" id="usertab"><a id="uname" style="color:white" href="http://localhost:3000/signin">Signin</a></h4>
               <nav>
                 <ul class="nav masthead-nav" id="tab">
                   <li class="active"><a href="#">Home</a></li>
-                  <li id="usertab"><a href="http://localhost:3000/signin">Signin</a></li>
+              
                   <li><a href="#">Profile</a></li> 
                 </ul>
               </nav>
