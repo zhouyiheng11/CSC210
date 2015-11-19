@@ -1,120 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>SignUp</title>
-
-		<link href="bootstrap.min.css" rel="stylesheet">
-		<link href="signup.css" rel="stylesheet">
-
-		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src= "bootstrap.min.js"></script>
-		<script type = "text/javascript"> 
-  			$(document).ready(function() {
-
-  				$(document).ajaxError(function() {
-		        	alert("Sorry, there was a problem!");
-		        });
-
-
-  				$("#submit").click(function() {
-  					$("#signup-form").on("submit", function(e){
-            			e.preventDefault();
-	    				if ($("#passwordBox").val() != $("#repasswordBox").val()){
-	    					alert("Password Not matching!");
-	    					var x = document.getElementById("passwordBox");
-	    					var y = document.getElementById("repasswordBox");
-	    					x.value = "";
-	    					y.value = "";
-	    				}
-	    				else{
-	    					$.ajax({
-	    						url: "users/",
-	    						type: "POST",
-	      						dataType : "text", // this URL returns a plain text string, not JSON
-	     						data : { 
-	     							username: $("#usernameBox").val(),
-	              	 				password: $("#passwordBox").val(),
-	               					nickname: $("#nicknameBox").val(),
-	               					age: $("#ageBox").val(),
-	               					gender: $("#gender").val()
-	             				},
-	      						success: function( data ) {
-	        						if (data == 'OK') {
-	        							console.log("Success!!!");
-	         							$("#head").html("Successfully created a new user!\nPlease wait 5 seconds!");
-	        						} else {
-	          							$("#head").html(data);
-	        						}
-	        						setTimeout("location.href = \"http://localhost:3000/signin\"",5000);
-	      						},
-	    					});
-	    				}
-					});
-  				});
-
-        		$("#back").click(function(){
-            		window.location.href = "http://localhost:3000/";
-        		})
-  			});
-		</script>
-	</head>
-	<body>
-		<div class="container">
-		    <h1 id="head" class="well" style="font-family:Arial Rounded MT Bold">Sign Up for Food Miner!</h1>
-			<div class="col-lg-12 well">
-				<div class="row">
-					<form id="signup-form">
-						<div class="col-sm-12">
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>Username</label>
-									<input type="text" id="usernameBox"placeholder="Username" class="form-control">
-								</div>
-								<div class="col-sm-6 form-group">
-									<label>Nickname</label>
-									<input type="text" id="nicknameBox" placeholder="Nickname" class="form-control">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>Password</label>
-									<input type="password" id="passwordBox" placeholder="Password" class="form-control">
-								</div>
-								<div class="col-sm-6 form-group">
-									<label>Re-Password</label>
-									<input type="password" id="repasswordBox" placeholder="Re-Password" class="form-control">
-								</div>
-							</div>						
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>Email Address</label>
-									<input type="text" id="emailBox" placeholder="Email" class="form-control">
-								</div>
-								<div class="col-sm-3 form-group">
-									<label>Age</label>
-									<input type="text" id="ageBox" placeholder="Age" class="form-control">
-								</div>
-								<div class="col-sm-3 form-group">
-									<label>Gender</label>
-									<div class="btn-group" data-toggle="buttons">
-		                				<label class="btn btn-default">
-		                    				<input type="radio" id="gender" name="sex" value="male" checked/> Male
-		                				</label> 
-		                				<label class="btn btn-default">
-		                    				<input type="radio" id="gender" name="sex" value="female"/> Female
-		                				</label>
-		            				</div>
-								</div>
-							</div>
-							<div style="vertical-align:middle;text-align:center;">
-								<button id="submit" class="btn btn-lg btn-info" type="submit">Submit</button>
-								<button id="reset" class="btn btn-lg btn-info" type="reset">Reset</button>
-								<button id="back" class="btn btn-lg btn-info" type="button">Back</button>
-							</div>
-						</div>
-					</form> 
-				</div>
-			</div>
-		</div>
-	</body>
+<html>
+<link href= "bootstrap.min.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src= "bootstrap.min.js"></script>
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Default  <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
 </html>

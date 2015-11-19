@@ -35,7 +35,7 @@
         });
 
         if(localStorage.getItem('username')){
-          $("#uname").replaceWith("<a href=\"http://localhost:3000/signin\">"+localStorage['username']+"</a>")
+          $("#uname").replaceWith("<a href=\"http://localhost:3000/profile\">"+localStorage['username']+"</a>")
         }
       });
     </script>
@@ -57,6 +57,7 @@
                   <li class="active"><a href="#">Home</a></li>
               
                   <li><a href="#">Profile</a></li> 
+                  <li><a href="#"></a></li> 
                 </ul>
               </nav>
             </div>
