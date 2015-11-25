@@ -75,6 +75,7 @@
 					success: function( data ) {
 						if (data == 'OK') {
 							console.log("Success!!!");
+							localStorage['preference'] = $("#selector").val();
 							$("#head").html("Successfully created a new user!\nPlease wait 5 seconds!");
 						} else {
 							$("#head").html(data);
